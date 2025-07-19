@@ -1,5 +1,6 @@
 package com.example.store.exception;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -53,10 +54,12 @@ public class GlobalExceptionHandler {
     }
 
     // Error Response Classes
+    @Getter
     public static class ErrorResponse {
-        private String errorCode;
-        private String message;
-        private LocalDateTime timestamp;
+        // Getters
+        private final String errorCode;
+        private final String message;
+        private final LocalDateTime timestamp;
 
         public ErrorResponse(String errorCode, String message, LocalDateTime timestamp) {
             this.errorCode = errorCode;
@@ -64,30 +67,13 @@ public class GlobalExceptionHandler {
             this.timestamp = timestamp;
         }
 
-        // Getters
-        public String getErrorCode() { return errorCode; }
-        public String getMessage() { return message; }
-        public LocalDateTime getTimestamp() { return timestamp; }
     }
 
-    public static class ValidationErrorResponse {
-        private String errorCode;
-        private String message;
-        private Map<String, String> validationErrors;
-        private LocalDateTime timestamp;
+    /**
+     * @param errorCode Getters
+     */
+        public record ValidationErrorResponse(String errorCode, String message, Map<String, String> validationErrors,
+                                              LocalDateTime timestamp) {
 
-        public ValidationErrorResponse(String errorCode, String message,
-                                       Map<String, String> validationErrors, LocalDateTime timestamp) {
-            this.errorCode = errorCode;
-            this.message = message;
-            this.validationErrors = validationErrors;
-            this.timestamp = timestamp;
-        }
-
-        // Getters
-        public String getErrorCode() { return errorCode; }
-        public String getMessage() { return message; }
-        public Map<String, String> getValidationErrors() { return validationErrors; }
-        public LocalDateTime getTimestamp() { return timestamp; }
     }
 }

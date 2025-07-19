@@ -1,10 +1,16 @@
 package com.example.store.dto;
 
 import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
+@Setter
+@Getter
 public class ProductCreateRequest {
 
+    // Getters and Setters
     @NotBlank(message = "Product type is required")
     @Size(max = 50, message = "Product type must not exceed 50 characters")
     private String type;
@@ -34,19 +40,4 @@ public class ProductCreateRequest {
         this.imageUrl = imageUrl;
     }
 
-    // Getters and Setters
-    public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-
-    public BigDecimal getPrice() { return price; }
-    public void setPrice(BigDecimal price) { this.price = price; }
-
-    public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }
